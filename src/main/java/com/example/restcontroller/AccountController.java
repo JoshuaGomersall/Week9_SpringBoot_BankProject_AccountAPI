@@ -20,41 +20,33 @@ import com.example.service.AccountService;
 
 @RestController
 public class AccountController {
-	
-	private AccountService  accService;
+
+	private AccountService accService;
 
 	public AccountController(AccountService accService) {
-		
+
 		this.accService = accService;
 	}
-	
+
+	@Autowired
+	RestTemplateBuilder restTemplate;
+
 	@PostMapping("/createAccount")
 	public void createAccount(AccountEntity account) {
 		this.accService.createAccount(account);
-		
-	}
-	  @Autowired
-	   RestTemplateBuilder restTemplate;
 
+	}
+
+	@PostMapping("template/createAccount")
+	public String AccountApi(@RequestBody AccountEntity account) {
+		return restTemplate.build().exchange("http://localhost:8883/", HttpMethod.POST,
+				new HttpEntity<AccountEntity>(account, null), String.class).getBody();
+	}
 	
-	  @RequestMapping(value = "template/createAccount", method = RequestMethod.POST)
-	   public String AccountApi(@RequestBody AccountEntity account) {
-	      HttpEntity<AccountEntity> entity = new HttpEntity<AccountEntity>(account,null);
-	      
-	      return restTemplate.build().exchange(
-	         "http://localhost:8883/", HttpMethod.POST, entity , String.class).getBody();
-	   
-	      
-	  }
-	 
-	  @RequestMapping(value = "template/getNumber", method = RequestMethod.POST)
-	   public String createProducts(@RequestBody AccountEntity account) {
-	      HttpEntity<AccountEntity> entity = new HttpEntity<AccountEntity>(account,null);
-	      
-	      return restTemplate.build().exchange(
-	         "http://localhost:8882/", HttpMethod.GET, null , String.class).getBody();
-	   
-	  }
-	
+	@PostMapping("template/generateNumber")
+	public String AccountApiGet(@RequestBody AccountEntity account) {
+		return restTemplate.build().exchange("http://localhost:8882/", HttpMethod.GET,
+				null, String.class).getBody();
+	}
 
 }
