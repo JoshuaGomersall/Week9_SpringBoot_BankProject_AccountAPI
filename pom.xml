@@ -11,7 +11,7 @@
 	<groupId>com.qa</groupId>
 	<artifactId>ComponentExample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Projecht</name>
+	<name>ProjectAPI</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
