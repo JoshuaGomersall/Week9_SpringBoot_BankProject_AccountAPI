@@ -9,10 +9,9 @@ public class AccountEntity {
 	@Id
 	@GeneratedValue
 	private long id;
-/*
+
 	private String foreName;
 	private String familyName;
-	*/
 	private String accNumber;
 	
 	
@@ -22,7 +21,7 @@ public class AccountEntity {
 	public void setAccNumber(String accNumber) {
 		this.accNumber = accNumber;
 	}
-	/*
+	
 	public String getForeName() {
 		return foreName;
 	}
@@ -35,7 +34,7 @@ public class AccountEntity {
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
-	*/
+	
 	public long getId() {
 		return id;
 	}
