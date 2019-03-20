@@ -47,12 +47,12 @@ public class AccountController {
 	      
 	  }
 	 
-	  @RequestMapping(value = "template/createAccount", method = RequestMethod.POST)
+	  @RequestMapping(value = "template/getNumber", method = RequestMethod.POST)
 	   public String createProducts(@RequestBody AccountEntity account) {
 	      HttpEntity<AccountEntity> entity = new HttpEntity<AccountEntity>(account,null);
 	      
 	      return restTemplate.build().exchange(
-	         "http://localhost:8882/", HttpMethod.GET, entity , String.class).getBody();
+	         "http://localhost:8882/", HttpMethod.GET, null , String.class).getBody();
 	   
 	  }
 	
