@@ -12,3 +12,8 @@ Allows The User To Create A Account Using PostMan POST Requests
 8882 - Account Number Gen API 
 
 8883 - Account Prize API
+
+8161 - ActiveMQ 
+
+27017 - MongoDB 
+
