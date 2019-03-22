@@ -45,13 +45,7 @@ public class AccountEntity {
 				+ accNumber + "]";
 	}
 	
-//	public AccountEntity(String foreName, String familyName, String accNumber) {
-//		super();
-//		this.id = id;
-//		this.foreName = foreName;
-//		this.familyName = familyName;
-//		this.accNumber = accNumber;
-//	}
+
 	
 	
 	
