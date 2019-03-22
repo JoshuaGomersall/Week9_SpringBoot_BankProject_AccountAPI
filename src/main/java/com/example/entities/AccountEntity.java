@@ -15,6 +15,13 @@ public class AccountEntity {
 	private String accNumber;
 	
 	
+	
+	
+	
+	public AccountEntity(String foreName, String familyName) {
+		this.foreName = foreName;
+		this.familyName = familyName;
+	}
 	public String getAccNumber() {
 		return accNumber;
 	}

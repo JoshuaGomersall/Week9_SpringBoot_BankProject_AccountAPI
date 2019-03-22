@@ -15,8 +15,9 @@ public class AccountService {
 		this.accRepo = accRepo;
 	}
 	
-	public void createAccount(AccountEntity account) {
+	public String createAccount(AccountEntity account) {
 		this.accRepo.save(account);
+		return "Success";
 	}
 	
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.client.RestTemplate;
 
 import com.example.entities.AccountEntity;
 import com.example.service.AccountService;
@@ -19,32 +19,34 @@ import com.example.service.AccountService;
 @RestController
 public class AccountController {
 
+	
 	private AccountService accService;
-
-	public AccountController(AccountService accService) {
-
-		this.accService = accService;
-	}
+	
+	private RestTemplate restTemplate;
 
 	@Autowired
-	RestTemplateBuilder restTemplate;
-
-	@PostMapping("/createAccount")
-	public void createAccount(@RequestBody AccountEntity account) {
-		this.accService.createAccount(account);
-
+	public AccountController(AccountService accService, RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+		this.accService = accService;
 	}
 
 	@PostMapping("template/prizes")
 	public String accountApi(@RequestBody AccountEntity account) {
-		return restTemplate.build().exchange("http://localhost:8883/", HttpMethod.POST,
+		return restTemplate.exchange("http://localhost:8883/", HttpMethod.POST,
 				new HttpEntity<AccountEntity>(account, null), String.class).getBody();
 	}
-	
+
 	@GetMapping("template/generateNumber")
 	public String accountApiGet() {
-		return restTemplate.build().exchange("http://localhost:8882/genNumber", HttpMethod.GET,
+		return restTemplate.exchange("http://localhost:8882/genNumber", HttpMethod.GET,
 				null, String.class).getBody();
+	}
+	
+	@PostMapping("/createAccount")
+	public String createAccount(@RequestBody AccountEntity account) {
+		this.accService.createAccount(account);
+		return "Success";
+
 	}
 
 }
